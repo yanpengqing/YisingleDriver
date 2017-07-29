@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@mipmap/maprouter_navi_button_icon" android:state_pressed="false"></item>
+
+    <item android:drawable="@mipmap/maprouter_navi_button_pre_icon" android:state_pressed="true"></item>
+</selector>

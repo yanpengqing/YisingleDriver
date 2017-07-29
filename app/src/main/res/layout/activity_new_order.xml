@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_grey_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="普通型预约"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_6dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/order_close_selector"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_12dp"
+        android:text="今天"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/tv_time"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_6dp"
+        android:layout_marginStart="@dimen/dimen_6dp"
+        tools:text="16:00"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_time_title"
+        app:layout_constraintLeft_toRightOf="@+id/tv_time_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <TextView
+
+        android:id="@+id/tv_user_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用车"
+        android:textColor="@color/text_grey_color"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_time" />
+
+    <Button
+        android:id="@+id/bt_start"
+        android:layout_width="0dp"
+        android:layout_height="88dp"
+        android:background="@drawable/bt_orange_no_radius_selector"
+        android:text="接单\n30秒"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="36dp"
+
+        android:layout_marginTop="36dp"
+        android:src="@mipmap/bts_im_homepage_start_address"
+        app:layout_constraintHorizontal_chainStyle="packed"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_car" />
+
+    <TextView
+        android:id="@+id/tv_start_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12dp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_start"
+        app:layout_constraintLeft_toRightOf="@+id/iv_start"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_start"
+        tools:text="天府大道天府五街天府软件园E区" />
+
+
+    <ImageView
+        android:id="@+id/iv_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="36dp"
+        android:src="@mipmap/bts_im_homepage_end_address"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_start_name" />
+
+    <TextView
+        android:id="@+id/tv_end_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_12dp"
+
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_end"
+        app:layout_constraintLeft_toRightOf="@+id/iv_end"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_end"
+
+        tools:text="天府广场" />
+
+</android.support.constraint.ConstraintLayout>

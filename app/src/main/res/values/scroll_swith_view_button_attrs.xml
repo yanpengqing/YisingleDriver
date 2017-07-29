@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrollSwithViewButton">
+        <attr name="center_textSize" format="dimension"></attr>
+        <attr name="center_textColor" format="reference|color"></attr>
+        <attr name="center_text" format="string"></attr>
+        <attr name="center_background" format="reference|color"></attr>
+        <attr name="scroll_button_with" format="dimension"></attr>
+        <attr name="scroll_button_background" format="reference|color"></attr>
+        <attr name="right_image_view_src" format="reference|color"></attr>
+
+    </declare-styleable>
+</resources>

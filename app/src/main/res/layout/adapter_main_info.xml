@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_12dp"
+        android:background="@drawable/adapter_bg"
+        android:padding="@dimen/dimen_12dp">
+
+        <TextView
+            android:id="@+id/tv_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="@dimen/dimen_22sp"
+            tools:text="滴滴播报" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_info_title"
+            android:layout_marginLeft="@dimen/dimen_6dp"
+            android:layout_toRightOf="@+id/tv_info_title"
+            android:textSize="@dimen/dimen_12sp"
+            tools:text="09-23  12:00" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_info_title"
+            android:layout_marginBottom="@dimen/dimen_12dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            tools:text="亲爱的车主朋友们，滴滴温馨提示:司机端APP又有新功能上线了！即日起遇到联系不上乘客，听不到问题都。。。" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

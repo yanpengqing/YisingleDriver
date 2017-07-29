@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yisingle.driver.app.activity.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_navi_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/text_title"></include>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:background="@android:color/white"
+        android:paddingTop="@dimen/dimen_12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/bt_open_navi">
+
+            <TextView
+                android:id="@+id/tv_place_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/dimen_18sp"
+                tools:text="去数字山谷" />
+
+            <TextView
+                android:id="@+id/tv_order_distance_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/tv_place_name"
+                android:layout_below="@+id/tv_place_name"
+                android:layout_marginTop="@dimen/dimen_12dp"
+                android:textSize="@dimen/dimen_12sp"
+                tools:text="剩余1.2公里    6分钟" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bt_open_navi"
+            android:layout_alignTop="@+id/bt_open_navi"
+            android:layout_toLeftOf="@+id/bt_open_navi"
+
+            android:background="@color/gray_line" />
+
+        <Button
+            android:id="@+id/bt_open_navi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:drawablePadding="@dimen/dimen_6dp"
+            android:drawableTop="@drawable/maprouter_navi_button_icon_selector"
+            android:text="导航"
+            android:textColor="@color/text_grey_color" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/bt_open_navi"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@color/gray_line" />
+
+        <TextView
+            android:id="@+id/tv_count_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:text="请在5分01秒内到达乘客上车点"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <View
+
+            android:id="@+id/view_count_time_line"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_below="@+id/tv_count_time"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:background="@color/gray_line" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_order_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scrollSwithViewButton"
+        android:layout_marginBottom="@dimen/dimen_12dp"
+        android:layout_marginLeft="@dimen/dimen_12dp"
+        android:layout_marginRight="@dimen/dimen_12dp"
+        android:background="@drawable/bg_line_corners">
+
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dimen_12dp"
+            android:layout_marginLeft="@dimen/dimen_12dp"
+            android:layout_marginTop="@dimen/dimen_12dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_header"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/header" />
+
+            <TextView
+                android:id="@+id/tv_phoneNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:text="尾号1357"
+                android:textColor="@color/text_grey_color"
+                android:textSize="@dimen/dimen_8sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/iv_message"
+            android:layout_toRightOf="@+id/ll_header"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_start_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/order_start_point"
+                android:drawablePadding="@dimen/dimen_4dp"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:text="东方希望天祥广场" />
+
+            <TextView
+                android:id="@+id/tv_end_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_4dp"
+                android:drawableLeft="@mipmap/order_end_point"
+                android:drawablePadding="@dimen/dimen_4dp"
+                android:ellipsize="end"
+                android:lines="1"
+                tools:text="天府广场" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_message"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="24dp"
+            android:layout_toLeftOf="@+id/iv_phone"
+            android:src="@mipmap/icon_passenger_im_call_normal" />
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_12dp"
+            android:src="@mipmap/icon_passenger_phone_call_normal" />
+
+
+    </RelativeLayout>
+
+
+    <com.yisingle.driver.app.view.ScrollSwithViewButton
+        android:id="@+id/scrollSwithViewButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginRight="-10dp"
+        app:center_background="@drawable/bt_orange_no_radius_selector"
+        app:center_text="已到达乘客起点"
+
+        app:center_textColor="@android:color/white"
+        app:center_textSize="6sp"
+        app:scroll_button_background="@drawable/bt_orange_no_radius_selector"
+        app:scroll_button_with="48dp" />
+</RelativeLayout>
+

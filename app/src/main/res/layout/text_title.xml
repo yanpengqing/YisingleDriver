@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/titleBar"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="@color/main_grey_color"
+    android:paddingBottom="@dimen/dimen_8dp"
+    android:paddingTop="@dimen/dimen_8dp">
+
+    <Button
+        android:id="@+id/bt_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_12dp"
+        android:gravity="left|center_vertical"
+        android:background="@android:color/transparent"
+
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="左边" />
+
+
+    <Button
+        android:id="@+id/bt_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="中间" />
+
+
+    <Button
+        android:id="@+id/bt_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_16dp"
+        android:gravity="right|center_vertical"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/dimen_10sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="中间" />
+
+
+</android.support.constraint.ConstraintLayout>
