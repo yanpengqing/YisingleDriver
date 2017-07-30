@@ -1,5 +1,7 @@
 package com.yisingle.driver.app.websocket;
 
+import android.text.TextUtils;
+
 import com.amap.api.location.AMapLocation;
 import com.blankj.utilcode.util.SPUtils;
 import com.google.gson.Gson;
@@ -100,7 +102,7 @@ public class WebSocketManager extends WebSocketListener {
     }
 
 
-    public void sendData(String info){
+    public void sendData(String info) {
 
         if (sWebSocket != null) {
             sWebSocket.send(info);
@@ -122,6 +124,9 @@ public class WebSocketManager extends WebSocketListener {
         }
 
 
+        if (TextUtils.isEmpty(latitude) || TextUtils.isEmpty(longitude)) {
+            return;
+        }
         SocketData<HeartBeatData> webSocketData = new SocketData<>();
         webSocketData.setCode(0);
         webSocketData.setMsg("心跳数据");
