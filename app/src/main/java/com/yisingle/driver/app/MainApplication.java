@@ -11,6 +11,8 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.crashreport.CrashReport;
 
 /**
  * Created by jikun on 17/6/29.
@@ -35,6 +37,7 @@ public class MainApplication extends Application {
         initLogger();
         Utils.init(getApplicationContext());
         AppManager.getInstance().init(this);
+        Bugly.init(getApplicationContext(), "73e25286b1", false);
         SpeechUtility.createUtility(getApplicationContext(), SpeechConstant.APPID + "=59546d33");//讯飞语音的AppId
     }
 

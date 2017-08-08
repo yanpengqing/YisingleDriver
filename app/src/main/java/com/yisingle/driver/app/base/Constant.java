@@ -10,7 +10,7 @@ public class Constant {
     private static final String WS = "ws://";
     private static final String HTPP = "http://";
     private static final String IP = "119.23.51.14";//阿里云IP
-    private static final String LOCAL_IP = "192.168.3.27";
+    private static final String LOCAL_IP = "192.168.2.3";
     private static final String PORT = "8080";
 
     //192.168.2.3
