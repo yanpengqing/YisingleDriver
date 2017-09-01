@@ -51,9 +51,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile project(':CommonLibrary:AmapLibrary')
     compile project(':CommonLibrary:baselibray')
     compile 'com.jakewharton:butterknife:8.6.0'
