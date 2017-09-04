@@ -63,7 +63,6 @@
 
         <activity android:name=".activity.MainActivity"></activity>
 
-        <activity android:name=".activity.TestActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
@@ -89,10 +88,7 @@
                 <action android:name="com.yisingle.driver.app.service.GuardService" />
             </intent-filter>
         </service>
-        <service
-            android:name=".service.LocationService"
-
-            android:process=":location">
+        <service android:name=".service.LocationService">
             <intent-filter>
                 <action android:name="com.yisingle.driver.app.service.LocationService" />
             </intent-filter>
@@ -121,7 +117,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
     </application>
 
