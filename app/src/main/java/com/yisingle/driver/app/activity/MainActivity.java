@@ -145,6 +145,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain.I
             case MainPresenter.PresenterHttpType.Message:
                 //dimisLoadingDialog();
                 break;
+            default:
+                break;
 
         }
 
@@ -161,6 +163,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain.I
                 break;
             case MainPresenter.PresenterHttpType.Message:
                 //dimisLoadingDialog();
+                break;
+            default:
                 break;
 
 
@@ -202,6 +206,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain.I
             case DriverEntity.DriverState.BREAKDOWN:
                 info = "出车";
                 Log.e("测试代码", "测试代码" + "下线");
+                break;
+            default:
                 break;
         }
 
@@ -253,6 +259,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMain.I
                 break;
             case DriverEntity.DriverState.SERVICE:
                 mPresenter.findOrder(0);
+                break;
+            default:
                 break;
         }
 

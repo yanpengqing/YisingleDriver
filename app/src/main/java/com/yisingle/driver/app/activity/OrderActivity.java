@@ -153,6 +153,8 @@ public class OrderActivity extends BaseActivity<OrderPresenter> implements IOrde
                     case OrderEntity.OrderState.PASSENGER_OUT_CAR:
                         mPresenter.finishOrder(currentOrderEntity.getId(), 0);
                         break;
+                    default:
+                        break;
 
                 }
 
@@ -210,6 +212,8 @@ public class OrderActivity extends BaseActivity<OrderPresenter> implements IOrde
             case OrderEntity.OrderState.PASSENGER_OUT_CAR:
                 settingData = RouteNaviSettingData.createOneStartToEndRouteData(startLatLonPoint, endLatLonPoint);
                 break;
+            default:
+                break;
 
         }
         return settingData;
@@ -258,6 +262,8 @@ public class OrderActivity extends BaseActivity<OrderPresenter> implements IOrde
                 reshTitleData("乘客已下车");
                 reshTopOrderView(orderEntity.getEndPlaceName());
 
+                break;
+            default:
                 break;
 
         }
@@ -338,7 +344,8 @@ public class OrderActivity extends BaseActivity<OrderPresenter> implements IOrde
                 break;
             case OrderEntity.OrderState.PASSENGER_OUT_CAR:
                 naviFragment.startNav(startNaviLatLng, endNaviLatLng);
-
+                break;
+            default:
                 break;
 
         }
@@ -389,6 +396,8 @@ public class OrderActivity extends BaseActivity<OrderPresenter> implements IOrde
                     break;
                 case OrderEntity.OrderState.PASSENGER_OUT_CAR:
                     scrollSwithViewButton.setText("结束订单" + getMoneyAndTimeShowInfo());
+                    break;
+                default:
                     break;
             }
         }

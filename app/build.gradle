@@ -58,4 +58,5 @@ dependencies {
     compile 'com.yanzhenjie:permission:1.0.8'
     implementation project(':baselibray')
     implementation project(':AmapLibrary')
+
 }

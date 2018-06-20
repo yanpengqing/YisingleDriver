@@ -9,6 +9,8 @@ import com.amap.api.location.AMapLocation;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.regex.Pattern.*;
+
 /**
  * Created by liangchao_suxun on 17/1/19.
  */
@@ -25,7 +27,7 @@ public class WifiAutoCloseDelegate implements IWifiAutoCloseDelegate {
     @Override
     public boolean isUseful(Context context) {
         String manName = getManufacture(context);
-        Pattern pattern = Pattern.compile("xiaomi", Pattern.CASE_INSENSITIVE);
+        Pattern pattern = compile("xiaomi", CASE_INSENSITIVE);
         Matcher m = pattern.matcher(manName);
         return m.find();
     }

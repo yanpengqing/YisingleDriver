@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RetrofitManager {
 
-    private static final long DEFAULT_TIMEOUT = 5000l;
+    private static final long DEFAULT_TIMEOUT = 5000L;
 
     private ApiService apiService;
     private Retrofit retrofit;

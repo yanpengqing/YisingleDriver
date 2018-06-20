@@ -15,19 +15,12 @@ import android.widget.TextView;
 
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.TextureMapView;
+import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.LatLngBounds;
-import com.amap.api.navi.AMapNaviListener;
 import com.amap.api.navi.AMapNaviView;
 import com.amap.api.navi.model.AMapLaneInfo;
-import com.amap.api.navi.model.AMapNaviCameraInfo;
 import com.amap.api.navi.model.AMapNaviCross;
-import com.amap.api.navi.model.AMapNaviInfo;
-import com.amap.api.navi.model.AMapNaviLocation;
-import com.amap.api.navi.model.AMapNaviTrafficFacilityInfo;
-import com.amap.api.navi.model.AMapServiceAreaInfo;
-import com.amap.api.navi.model.AimLessModeCongestionInfo;
-import com.amap.api.navi.model.AimLessModeStat;
 import com.amap.api.navi.model.NaviInfo;
 import com.amap.api.navi.model.NaviLatLng;
 import com.amap.api.navi.view.DriveWayView;
@@ -38,7 +31,6 @@ import com.amap.api.services.route.DrivePath;
 import com.amap.api.services.route.DriveRouteResult;
 import com.amap.library.R;
 import com.amap.library.R2;
-import com.autonavi.tbt.TrafficFacilityInfo;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.map.library.DistanceUtils;
 import com.map.library.TimeHelper;
@@ -47,6 +39,10 @@ import com.map.library.data.RouteData;
 import com.map.library.data.RouteNaviSettingData;
 import com.map.library.mvp.IRouteNavi;
 import com.map.library.mvp.presenter.RouteNaviPresenterImpl;
+import com.yisingle.amapview.lib.base.view.marker.BaseMarkerView;
+import com.yisingle.amapview.lib.view.PathPlaningView;
+import com.yisingle.amapview.lib.view.PointMarkerView;
+import com.yisingle.amapview.lib.viewholder.MapInfoWindowViewHolder;
 
 import java.util.List;
 
@@ -58,7 +54,7 @@ import butterknife.OnClick;
  * Created by jikun on 17/6/29.
  */
 
-public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> implements AMapNaviListener, IRouteNavi.RouteView {
+public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> implements IRouteNavi.RouteView {
 
     private String TAG = NaviFragment.class.getSimpleName();
 
@@ -78,7 +74,7 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
 
 
     @BindView(R2.id.mZoomInIntersectionView)
-    ImageView mZoomInIntersectionView;//路口放大  showCross使用
+    ImageView mZoomInIntersectionView;
 
 
     @BindView(R2.id.driverWayView)
@@ -149,6 +145,12 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
     OverviewButtonView overviewButtonView;
 
 
+    protected PathPlaningView<String, String> carToTargetPathPlaningView;
+
+
+    protected PathPlaningView<String, String> startToEndPathPlaningView;
+
+
     @Override
     public AMapNaviView getNaviView() {
         return naviView;
@@ -168,6 +170,37 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         mAMapNavi.addAMapNaviListener(this);
         getBundleDataDoShowRoute();
         initOverviewButtonView();
+
+
+        carToTargetPathPlaningView = new PathPlaningView.Builder(getContext(), getaMap())
+                .setStartMarkBuilder(
+                        new PointMarkerView.Builder(getContext(), getaMap())
+                                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_car))
+                )
+                .setEndMarkBuilder(
+                        new PointMarkerView.Builder(getContext(), getaMap())
+                                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_start))
+
+                )
+                .create();
+
+//        carToTargetPathPlaningView.bingStartInfoWindowView(new BaseMarkerView.InfoWindowView<String>() {
+//            @Override
+//            public void bindData(MapInfoWindowViewHolder viewHolder, String data) {
+//
+//            }
+//        });
+
+        startToEndPathPlaningView = new PathPlaningView.Builder(getContext(), getaMap())
+                .setStartMarkBuilder(
+                        new PointMarkerView.Builder(getContext(), getaMap())
+                                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_start))
+                )
+                .setEndMarkBuilder(
+                        new PointMarkerView.Builder(getContext(), getaMap())
+                                .setIcon(BitmapDescriptorFactory.fromResource(R.mipmap.icon_end))
+                )
+                .create();
     }
 
 
@@ -212,7 +245,7 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
 
 
     @OnClick(R2.id.ib_switch)
-    public void switch_road() {
+    public void switchRoad() {
         if (null != mAMapNavi) {
             mAMapNavi.switchParallelRoad();
         }
@@ -245,76 +278,6 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         }
     }
 
-    @Override
-    public void onInitNaviFailure() {
-        Log.e("测试代码", TAG + "测试代码onInitNaviFailure");
-    }
-
-    @Override
-    public void onInitNaviSuccess() {
-        Log.e("测试代码", TAG + "测试代码onInitNaviSuccess");
-    }
-
-    @Override
-    public void onStartNavi(int i) {
-        Log.e("测试代码", TAG + "测试代码onStartNavi");
-    }
-
-    @Override
-    public void onTrafficStatusUpdate() {
-        Log.e("测试代码", TAG + "测试代码onTrafficStatusUpdate");
-    }
-
-    @Override
-    public void onLocationChange(AMapNaviLocation aMapNaviLocation) {
-        //Log.e("测试代码", TAG + "测试代码onLocationChange");
-    }
-
-    @Override
-    public void onGetNavigationText(int i, String s) {
-        Log.e("测试代码", TAG + "测试代码onGetNavigationText");
-    }
-
-    @Override
-    public void onGetNavigationText(String s) {
-
-    }
-
-    @Override
-    public void onEndEmulatorNavi() {
-        Log.e("测试代码", TAG + "测试代码onEndEmulatorNavi");
-    }
-
-    @Override
-    public void onArriveDestination() {
-        Log.e("测试代码", TAG + "测试代码onArriveDestination");
-    }
-
-
-    @Override
-    public void onCalculateRouteFailure(int i) {
-        Log.e("测试代码", TAG + "测试代码onCalculateRouteFailure");
-    }
-
-    @Override
-    public void onReCalculateRouteForYaw() {
-        Log.e("测试代码", TAG + "测试代码onReCalculateRouteForYaw");
-    }
-
-    @Override
-    public void onReCalculateRouteForTrafficJam() {
-        Log.e("测试代码", TAG + "测试代码onReCalculateRouteForTrafficJam");
-    }
-
-    @Override
-    public void onArrivedWayPoint(int i) {
-        Log.e("测试代码", TAG + "测试代码onArrivedWayPoint");
-    }
-
-    @Override
-    public void onGpsOpenStatus(boolean b) {
-        Log.e("测试代码", TAG + "测试代码onGpsOpenStatus");
-    }
 
     @Override
     public void onNaviInfoUpdate(NaviInfo naviInfo) {
@@ -338,26 +301,12 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
             tv_all_ditance.setText("剩余" + allditance);
 
             tv_all_time.setText("预计" + allTime);
-            Log.e("测试代码", "测试代码IconType=" + naviInfo.getIconType());
+
 
         }
 
     }
 
-    @Override
-    public void onNaviInfoUpdated(AMapNaviInfo aMapNaviInfo) {
-
-    }
-
-    @Override
-    public void updateCameraInfo(AMapNaviCameraInfo[] aMapNaviCameraInfos) {
-        Log.e("测试代码", TAG + "测试代码updateCameraInfo");
-    }
-
-    @Override
-    public void onServiceAreaUpdate(AMapServiceAreaInfo[] aMapServiceAreaInfos) {
-        Log.e("测试代码", TAG + "测试代码onServiceAreaUpdate");
-    }
 
     @Override
     public void showCross(AMapNaviCross aMapNaviCross) {
@@ -365,7 +314,6 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         ll_little_navi_title.setVisibility(View.VISIBLE);
         mZoomInIntersectionView.setImageBitmap(aMapNaviCross.getBitmap());
 
-        Log.e("测试代码", TAG + "测试代码showCross");
 
     }
 
@@ -377,14 +325,12 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         Log.e("测试代码", TAG + "测试代码hideCross");
     }
 
+
     @Override
-    public void showLaneInfo(AMapLaneInfo[] aMapLaneInfos, byte[] bytes, byte[] bytes1) {
-        for (int i = 0; i < aMapLaneInfos.length; i++) {
-            Log.e("测试代码", TAG + "测试代码" + aMapLaneInfos[i].getLaneTypeIdHexString());
-        }
-        Log.e("测试代码", TAG + "测试代码showLaneInfo");
+    public void showLaneInfo(AMapLaneInfo aMapLaneInfo) {
         driverWayView.setVisibility(View.VISIBLE);
-        driverWayView.loadDriveWayBitmap(bytes, bytes1);
+        driverWayView.loadDriveWayBitmap(aMapLaneInfo);
+
     }
 
 
@@ -394,62 +340,33 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         Log.e("测试代码", TAG + "测试代码hideLaneInfo");
     }
 
-    @Override
-    public void onCalculateRouteSuccess(int[] ints) {
-
-    }
-
 
     @Override
     public void notifyParallelRoad(int i) {
         // parallelRoadType - 0表示隐藏 1 表示显示主路 2 表示显示辅路
         Log.e("测试代码", TAG + "测试代码notifyParallelRoad");
         switch (i) {
-            case 0://0表示隐藏
+            //0表示隐藏
+            case 0:
                 ib_switch.setVisibility(View.GONE);
                 break;
-            case 1://1 表示显示主路
+            //1 表示显示主路
+            case 1:
+                //因为现在在主路所以控件显示在辅路
                 ib_switch.setVisibility(View.VISIBLE);
                 ib_switch.setSelected(true);
-                //因为现在在主路所以控件显示在辅路
                 break;
-            case 2://2 表示显示辅路
+            //2 表示显示辅路
+            case 2:
                 ib_switch.setVisibility(View.VISIBLE);
                 ib_switch.setSelected(false);
                 //因为现在在辅路所以控件显示在主路
                 break;
+
+            default:
+                break;
         }
 
-    }
-
-    @Override
-    public void OnUpdateTrafficFacility(AMapNaviTrafficFacilityInfo aMapNaviTrafficFacilityInfo) {
-
-    }
-
-    @Override
-    public void OnUpdateTrafficFacility(AMapNaviTrafficFacilityInfo[] aMapNaviTrafficFacilityInfos) {
-        Log.e("测试代码", TAG + "测试代码OnUpdateTrafficFacility");
-    }
-
-    @Override
-    public void OnUpdateTrafficFacility(TrafficFacilityInfo trafficFacilityInfo) {
-
-    }
-
-    @Override
-    public void updateAimlessModeStatistics(AimLessModeStat aimLessModeStat) {
-        Log.e("测试代码", TAG + "测试代码updateAimlessModeStatistics");
-    }
-
-    @Override
-    public void updateAimlessModeCongestionInfo(AimLessModeCongestionInfo aimLessModeCongestionInfo) {
-        Log.e("测试代码", TAG + "测试代码updateAimlessModeCongestionInfo");
-    }
-
-    @Override
-    public void onPlayRing(int i) {
-        Log.e("测试代码", TAG + "测试代码onPlayRing");
     }
 
 
@@ -497,7 +414,6 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
      */
     public void showRoute(RouteNaviSettingData naviSettingData) {
         currentSettingData = naviSettingData;
-        removeMapRouteView();
         if (null != mAMapNavi) {
             mAMapNavi.stopNavi();
         }
@@ -520,6 +436,8 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
             case RouteNaviSettingData.TYPE.DO_TWO_ROUTE:
                 mPresenter.drawTwoRoute(getContext(), naviSettingData.getTargetLatLng(), naviSettingData.getStartLatLng(), naviSettingData.getEndLatLng());
                 break;
+            default:
+                break;
         }
 
 
@@ -540,18 +458,17 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
     @Override
     public void ondrawRouteSuccess(List<RouteData> routeResultList) {
         showMapLoadingViewSuccess();
-        removeMapRouteView();
         boolean isMove = true;
         for (int i = 0; i < routeResultList.size(); i++) {
             RouteData routeData = routeResultList.get(i);
             if (routeData.getType() == RouteData.Type.CAR_TO_TARGET) {
-                getMapRouteView().addCarRoute(routeData.getDriveRouteResult());
+                carToTargetPathPlaningView.draw(routeData.getDriveRouteResult());
                 if (isMove) {
                     moveToCamera(routeData.getDriveRouteResult().getStartPos(), routeData.getDriveRouteResult().getTargetPos());
                     isMove = false;
                 }
             } else {
-                getMapRouteView().addStartToEndRoute(routeData.getDriveRouteResult());
+                startToEndPathPlaningView.draw(routeData.getDriveRouteResult());
                 if (isMove) {
                     moveToCamera(routeData.getDriveRouteResult().getStartPos(), routeData.getDriveRouteResult().getTargetPos());
                 }
@@ -570,8 +487,6 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
                 callBack.onDrawRouteBack(drivePath);
             }
         }
-
-
     }
 
 
@@ -597,6 +512,7 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
         void onCloseNaviButton();
 
         void onDrawRouteBack(DrivePath drivePath);
+
     }
 
 
@@ -698,6 +614,7 @@ public class NaviFragment extends BaseNaviFragment<RouteNaviPresenterImpl> imple
 
     @OnClick(R2.id.btn_Location)
     public void locationTo() {
-        showDisPlayViewOrRecoverLockMode(false);//锁车模式
+        //锁车模式
+        showDisPlayViewOrRecoverLockMode(false);
     }
 }

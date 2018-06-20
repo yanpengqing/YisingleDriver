@@ -62,6 +62,7 @@ public abstract class MapSubscriber<T> extends Subscriber<T> {
     /**
      * 只要链式调用中抛出了异常都会走这个回调
      */
+    @Override
     public void onError(Throwable e) {
         e.printStackTrace();
         if (mBaseView != null) {

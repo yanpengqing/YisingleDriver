@@ -17,8 +17,9 @@ public class ToastUtils {
     }
 
     public static void show(CharSequence message, int duration) {
-        if (TextUtils.isEmpty(message))
+        if (TextUtils.isEmpty(message)) {
             return;
+        }
         Toast toast = Toast.makeText(AppManager.appContext(), message, duration);
         if (Looper.myLooper() == Looper.getMainLooper()) {
             toast.show();

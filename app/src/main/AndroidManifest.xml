@@ -68,7 +68,7 @@
             android:name="com.amap.api.v2.apikey"
             android:value="4a6160dfea32162a737bb7848d20a4a1" />
 
-        <service android:name="com.amap.api.location.APSService" />
+
 
 
         <activity

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.amap.api.navi.AMapNaviListener;
 import com.amap.api.navi.model.AMapLaneInfo;
+import com.amap.api.navi.model.AMapModelCross;
 import com.amap.api.navi.model.AMapNaviCameraInfo;
 import com.amap.api.navi.model.AMapNaviCross;
 import com.amap.api.navi.model.AMapNaviInfo;
@@ -24,6 +25,18 @@ public abstract class AMapNaviAdapterListener implements AMapNaviListener {
 
 
     public final String TAG = AMapNaviAdapterListener.class.getSimpleName();
+
+    @Override
+    public void onCalculateRouteSuccess(int[] ints) {
+
+
+    }
+
+
+    @Override
+    public void onCalculateRouteFailure(int i) {
+
+    }
 
     @Override
     public void onInitNaviFailure() {
@@ -181,6 +194,27 @@ public abstract class AMapNaviAdapterListener implements AMapNaviListener {
     public void updateAimlessModeCongestionInfo(AimLessModeCongestionInfo aimLessModeCongestionInfo) {
         //更新巡航模式的拥堵信息
         Log.e(TAG, TAG + ":更新巡航模式的拥堵信息--updateAimlessModeCongestionInfo");
+    }
+
+
+    @Override
+    public void updateIntervalCameraInfo(AMapNaviCameraInfo aMapNaviCameraInfo, AMapNaviCameraInfo aMapNaviCameraInfo1, int i) {
+
+    }
+
+    @Override
+    public void showModeCross(AMapModelCross aMapModelCross) {
+
+    }
+
+    @Override
+    public void hideModeCross() {
+
+    }
+
+    @Override
+    public void showLaneInfo(AMapLaneInfo aMapLaneInfo) {
+
     }
 
 

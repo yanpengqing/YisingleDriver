@@ -36,7 +36,7 @@ public class NewOrderActivity extends BaseActivity<NewOrderPresenter> implements
     private Subscription subscription;
 
 
-    private Long totalTime = 30l;
+    private Long totalTime = 30L;
 
     @BindView(R.id.bt_start)
     Button bt_start;

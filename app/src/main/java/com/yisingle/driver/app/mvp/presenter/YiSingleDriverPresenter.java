@@ -90,6 +90,8 @@ public class YiSingleDriverPresenter extends BasePresenter<IYiSingleDriver.IYiSi
                                 //发送价格订单到OrderService
                                 EventBus.getDefault().post(price.getResponse());
                                 break;
+                            default:
+                                break;
                         }
                     } else {
 

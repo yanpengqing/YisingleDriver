@@ -7,9 +7,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.UiSettings;
-import com.map.library.view.MapRouteView;
 import com.yisingle.baselibray.base.BasePresenter;
-
 
 import java.lang.reflect.Field;
 
@@ -20,7 +18,6 @@ import java.lang.reflect.Field;
 public abstract class BaseMapFragment<T extends BasePresenter> extends BaseFragment<T> {
     private TextureMapView mapView;
 
-    private MapRouteView mapRouteView;
 
     protected AMap aMap;
 
@@ -46,8 +43,11 @@ public abstract class BaseMapFragment<T extends BasePresenter> extends BaseFragm
                 }
             });
             mapView.onCreate(savedInstanceState);
-            mapRouteView = new MapRouteView(aMap, getContext());
+
+
         }
+
+
     }
 
 
@@ -100,7 +100,6 @@ public abstract class BaseMapFragment<T extends BasePresenter> extends BaseFragm
     @Override
     public void onDestroy() {
         super.onDestroy();
-        removeMapRouteView();
         if (null != mapView) {
             mapView.onDestroy();
         }
@@ -136,27 +135,6 @@ public abstract class BaseMapFragment<T extends BasePresenter> extends BaseFragm
 
     }
 
-
-    /**
-     * 移除地图上的marker和路线
-     */
-    protected void removeMapRouteView() {
-        if (null != mapRouteView) {
-            mapRouteView.removeRoute();
-        }
-        if (null != getaMap()) {
-            getaMap().clear();
-        }
-
-    }
-
-    public MapRouteView getMapRouteView() {
-        return mapRouteView;
-    }
-
-    public void setMapRouteView(MapRouteView mapRouteView) {
-        this.mapRouteView = mapRouteView;
-    }
 
     public AMap getaMap() {
         return aMap;

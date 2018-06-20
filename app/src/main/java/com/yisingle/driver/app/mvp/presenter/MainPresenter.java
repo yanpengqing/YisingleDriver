@@ -53,6 +53,7 @@ public class MainPresenter extends BasePresenter<IMain.IMainView> implements IMa
                 });
     }
 
+    @Override
     public void findOrder(int type) {
         int driverId = SPUtils.getInstance().getInt(LoginConstant.LOGIN_DRIVER_ID, -99);
         Integer[] states = new Integer[]{OrderEntity.OrderState.HAVE_TAKE,

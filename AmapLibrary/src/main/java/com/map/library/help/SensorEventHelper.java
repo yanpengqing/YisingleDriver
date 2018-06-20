@@ -97,6 +97,8 @@ public class SensorEventHelper implements SensorEventListener {
 
                 lastTime = System.currentTimeMillis();
             }
+            default:
+                break;
         }
 
     }
@@ -123,6 +125,8 @@ public class SensorEventHelper implements SensorEventListener {
 
             case Surface.ROTATION_270:
                 return -90;
+            default:
+                break;
         }
         return 0;
     }

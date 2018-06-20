@@ -106,20 +106,22 @@ public class TTSController implements SynthesizerListener {
     }
 
     public void stopSpeaking() {
-        if (mTts != null)
+        if (mTts != null) {
             mTts.stopSpeaking();
+        }
+
     }
 
 
     private void initSpeechSynthesizer() {
         // 清空参数
         mTts.setParameter(SpeechConstant.PARAMS, null);
-//        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
-//        // 设置在线合成发音人
-//        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");
+        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
+        // 设置在线合成发音人
+        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");
 
-        //设置使用本地引擎
-        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
+//        //设置使用本地引擎
+//        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
         //设置发音人资源路径
         mTts.setParameter(ResourceUtil.TTS_RES_PATH, getResourcePath());
         //设置发音人

@@ -53,5 +53,6 @@ dependencies {
     compile "com.jakewharton:butterknife:${butterKnifeVersion}"
     compile project(':iflytekLibrary')
     compileOnly project(':baselibray')
+    implementation 'com.yisingle.lib:AmapViewLibrary:0.0.7'
 
 }

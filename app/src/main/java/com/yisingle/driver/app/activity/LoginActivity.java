@@ -180,6 +180,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                 }
                 break;
             }
+            default:
+                break;
         }
     }
 

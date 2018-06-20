@@ -3,13 +3,15 @@ package com.map.library;
 import android.text.TextUtils;
 
 /**
- * Created by jikun on 17/9/27.
+ *
+ * @author jikun
+ * @date 17/9/27
  */
 
 public class NaviVoiceUtils {
 
 
-    private final static String[] judgeContainStrings = {
+    private final static String[] JUDGE_CONTAIN_STRINGS = {
             "大约需要",
             "违章拍照",
             "测速拍照",
@@ -17,7 +19,7 @@ public class NaviVoiceUtils {
             "当前车速"
     };
 
-    private final static String[] judgeEqualsStrings = {
+    private final static String[] JUDGE_EQUALS_STRINGS = {
             "请走右侧车道",
             "请走左侧车道"
     };
@@ -30,15 +32,15 @@ public class NaviVoiceUtils {
         if (TextUtils.isEmpty(text)) {
             isImport = false;
         } else {
-            for (int i = 0; i < judgeContainStrings.length; i++) {
+            for (int i = 0; i < JUDGE_CONTAIN_STRINGS.length; i++) {
 
-                if (text.contains(judgeContainStrings[i])) {
+                if (text.contains(JUDGE_CONTAIN_STRINGS[i])) {
                     isImport = false;
                     break;
                 }
             }
-            for (int i = 0; i < judgeEqualsStrings.length; i++) {
-                if (text.equals(judgeEqualsStrings[i])) {
+            for (int i = 0; i < JUDGE_EQUALS_STRINGS.length; i++) {
+                if (text.equals(JUDGE_EQUALS_STRINGS[i])) {
                     isImport = false;
                     break;
                 }

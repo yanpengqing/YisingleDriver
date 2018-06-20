@@ -271,7 +271,7 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="12dp"
                 android:visibility="visible"
-                tools:src="@drawable/drive_map_icon_preview_portrait_day"></com.amap.api.navi.view.OverviewButtonView>
+                tools:src="@drawable/drive_map_icon_preview_portrait_day"/>
 
 
             <ImageButton

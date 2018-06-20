@@ -16,7 +16,7 @@ import com.amap.api.maps.model.MarkerOptions;
 public class MarkerBuilder {
 
 
-    private static final float zIndex = 5f;
+    private static final float Z_INDEX = 5f;
 
 
     public static Marker getMarkerToMapView(LatLng latlng, Bitmap bitmap, AMap aMap) {
@@ -24,7 +24,7 @@ public class MarkerBuilder {
         options.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
         options.anchor(0.5f, 1);
         options.position(latlng);
-        options.zIndex(zIndex);
+        options.zIndex(Z_INDEX);
         Marker marker = aMap.addMarker(options);
         marker.setTitle("marker");//必须设置Title 否则infoWindow显示不出来
         return marker;

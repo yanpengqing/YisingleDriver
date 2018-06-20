@@ -77,6 +77,8 @@ public final class NetUtils {
 
                 case TelephonyManager.NETWORK_TYPE_LTE:
                     return NetworkType.MOBILE_FAST; // 4G
+                default:
+                    break;
             }
         }
 
